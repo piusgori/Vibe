@@ -21,7 +21,7 @@ const reducer = (state, action) => {
 
 const TAGS = ['All', 'News', 'Celebrity', 'Comedy', 'Reality']
 
-const ClubsScreen = () => {
+const PublicScreen = () => {
 
     const [state, dispatch] = useReducer(reducer, { option: 'Following', tag: 0 });
 
@@ -46,7 +46,7 @@ const ClubsScreen = () => {
   )
 }
 
-export default ClubsScreen;
+export default PublicScreen;
 
 const styles = StyleSheet.create({
     container: {
