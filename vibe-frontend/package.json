@@ -9,11 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-material/core": "^1.3.7",
+    "easy-number-formatter": "^1.0.3",
     "expo": "~47.0.12",
+    "expo-linear-gradient": "^12.0.1",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
-    "react-native": "0.70.5",
-    "react-native-material": "^0.0.4"
+    "react-native": "0.70.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
