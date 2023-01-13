@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import DataCard from '../components/DataCard';
 import { POSTS } from '../data';
@@ -13,7 +13,7 @@ const reducer = (state, action) => {
         case "Trending":
             return { ...state, option: "Trending" }
         case "changeTag":
-            return { ...state, tag: action.payload }
+            return { ...state, tag: action.payload, displayedPosts: action.payload === 0 ? POSTS : POSTS.filter(each => each.tags.includes(TAGS[action.payload])) }
         default: 
             return { ...state }
     }
@@ -23,7 +23,7 @@ const TAGS = ['All', 'News', 'Celebrity', 'Comedy', 'Reality']
 
 const PublicScreen = () => {
 
-    const [state, dispatch] = useReducer(reducer, { option: 'Following', tag: 0 });
+    const [state, dispatch] = useReducer(reducer, { option: 'Following', tag: 0, displayedPosts: POSTS });
 
   return (
     <View style={styles.container}>
@@ -40,7 +40,7 @@ const PublicScreen = () => {
             {TAGS.map((tag, index) => <TouchableOpacity onPress={() => dispatch({ type: 'changeTag', payload: index })} key={index}><View style={[styles.tag, { backgroundColor: state.tag === index ? "grey" : "black" }]}><Text>{tag}</Text></View></TouchableOpacity>)}
         </View>
         <ScrollView style={styles.dataContainer} showsVerticalScrollIndicator={false}>
-            {POSTS.map((eachPost, index) => <DataCard key={index} postData={eachPost}></DataCard>)}
+            {state.displayedPosts.map((eachPost, index) => <DataCard key={index} postData={eachPost}></DataCard>)}
         </ScrollView>
     </View>
   )
